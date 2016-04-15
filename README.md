@@ -56,7 +56,51 @@ Na função que representa o controller podemos ver o ```$scope``` sendo usado p
 
 ### Exemplo 02 
 
-Para treinarmos um pouco mais oque foi visto até agora, faremos validaremos um ```<form>``` com angular.
+Para treinarmos um pouco mais oque foi visto até agora, faremos validaremos um ```<form>``` com angular usando [boostrap](http://getbootstrap.com/) para deixar com um estilo melhor.  
+Para iniciamos uma estrutura básica como usamos até agora, a única diferença é o import do boostrap.
+```
+<html lang="pt-br" data-ng-app="flisolApp"> 
+<!-- exemplo02.html 02 -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ui-router-example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <body data-ng-controller="IndexController"> 
+
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script>
+    angular
+    .module('flisolApp', [])
+    .controller('IndexController', IndexController);
+    
+    IndexController.$inject = ['$scope']; 
+    function IndexController($scope){
+
+    };
+  </script>
+</html>
+```
+Em seguida dentro da tag ```body``` iniciaremos um form (simulando um cadastro de usúario), nesse momento é importante nos atentarmos ao nome declarado no form porque será importante nas próximas validações. 
+
+```
+<form name="formUsuario" data-ng-submit="salvarUsuario()" novalidate>
+</form>
+```
+O atributo ```novalidate``` define que as validações padrões do HTML serão ignoradas.  
+A diretiva de atributo ```ng-submit``` [(dococumentação oficial)](https://docs.angularjs.org/api/ng/directive/ngSubmit) espera uma função, essa função é executada quando acontece um ```submit``` dentro do form.   
+Nesse momento podemos criar essa função no controller também.
+```
+IndexController.$inject = ['$scope']; 
+function IndexController($scope){
+  $scope.salvarUsuario = salvarUsuario;
+
+  function salvarUsuario(){
+  };
+};
+```  
 
 ```
 <html lang="pt-br" data-ng-app="flisolApp"> 
@@ -78,7 +122,9 @@ Para treinarmos um pouco mais oque foi visto até agora, faremos validaremos um 
           <div class="form-group" data-ng-class="{ 'has-error' : formUsuario.nome.$invalid && !formUsuario.nome.$pristine }">
             <label>Nome</label>
             <input type="text" name="nome" class="form-control" data-ng-model="usuario.nome" required>
-            <p ng-show="formUsuario.nome.$invalid && !formUsuario.nome.$pristine" class="help-block">Seu nome é obrigatório</p>
+            <p data-ng-if="formUsuario.nome.$invalid && !formUsuario.nome.$pristine" class="help-block">
+              Seu nome é obrigatório.
+            </p>
           </div>
         </div>
        
@@ -86,7 +132,9 @@ Para treinarmos um pouco mais oque foi visto até agora, faremos validaremos um 
           <div class="form-group" data-ng-class="{ 'has-error' : formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine }">
             <label>Nome de usuario</label>
             <input type="text" name="usuario" class="form-control" data-ng-model="usuario.nomeUsuario" required>
-            <p ng-show="formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine" class="help-block">Nome de usuario é obrigatório</p>
+            <p data-ng-if="formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine" class="help-block">
+              Nome de usuario é obrigatório.
+            </p>
           </div>
         </div>
        
@@ -114,3 +162,4 @@ Para treinarmos um pouco mais oque foi visto até agora, faremos validaremos um 
   </script>
 </html>
 ```
+

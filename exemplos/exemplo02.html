@@ -17,7 +17,9 @@
           <div class="form-group" data-ng-class="{ 'has-error' : formUsuario.nome.$invalid && !formUsuario.nome.$pristine }">
             <label>Nome</label>
             <input type="text" name="nome" class="form-control" data-ng-model="usuario.nome" required>
-            <p ng-show="formUsuario.nome.$invalid && !formUsuario.nome.$pristine" class="help-block">Seu nome é obrigatório</p>
+            <p data-ng-if="formUsuario.nome.$invalid && !formUsuario.nome.$pristine" class="help-block">
+              Seu nome é obrigatório.
+            </p>
           </div>
         </div>
        
@@ -25,7 +27,9 @@
           <div class="form-group" data-ng-class="{ 'has-error' : formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine }">
             <label>Nome de usuario</label>
             <input type="text" name="usuario" class="form-control" data-ng-model="usuario.nomeUsuario" required>
-            <p ng-show="formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine" class="help-block">Nome de usuario é obrigatório</p>
+            <p data-ng-if="formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine" class="help-block">
+              Nome de usuario é obrigatório.
+            </p>
           </div>
         </div>
        
