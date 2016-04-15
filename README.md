@@ -89,8 +89,8 @@ Em seguida dentro da tag ```body``` iniciaremos um form (simulando um cadastro d
 <form name="formUsuario" data-ng-submit="salvarUsuario()" novalidate>
 </form>
 ```
-O atributo ```novalidate``` define que as validações padrões do HTML serão ignoradas.  
-A diretiva de atributo ```ng-submit``` [(dococumentação oficial)](https://docs.angularjs.org/api/ng/directive/ngSubmit) espera uma função, essa função é executada quando acontece um ```submit``` dentro do form.   
+O atributo ```novalidate``` define que as validações padrões do HTML5 serão ignoradas.  
+A diretiva de atributo ```ng-submit``` [(documentação oficial)](https://docs.angularjs.org/api/ng/directive/ngSubmit) espera uma função, essa função é executada quando acontece um ```submit``` dentro do form.   
 Nesse momento podemos criar essa função no controller também.
 ```
 IndexController.$inject = ['$scope']; 
@@ -101,7 +101,27 @@ function IndexController($scope){
   };
 };
 ```  
+Voltando ao ```form```  
+Agora criaremos um input comum usando o atributado ```required``` para indicarmos que aquele campo é requerido nesse formulário.  
+Abaixo do input, abriremos uma tag ```p``` com a diretiva ```ng-if``` [(documentação oficial)](https://docs.angularjs.org/api/ng/directive/ngIf), essa diretiva espera um valor **boolean** e recria/remove o elemento com base no valor recebido. Dentro dessa tag colocaremos as menssagens de validações. Nesse momento usaremos as propriedades de **form** que o angular nos fornece para construirmos nossa expressão. 
 
+```
+<label>Nome</label>
+<input type="text" name="nome" class="form-control" data-ng-model="usuario.nome" required>
+ <p data-ng-if="formUsuario.nome.$invalid && !formUsuario.nome.$pristine" class="help-block">
+  Seu nome é obrigatório.
+</p>
+```
+Mais sobre as propriedades:
+>**$valid**	diz se um item é válido considerando suas validações.
+
+>**$invalid** diz se um item está inválido considerando suas validações.
+
+>**$pristine** verdadeiro se o form/input ainda não foi usado.
+
+>**$dirty**	verdadeiro se o form/input foi usado.
+
+No estado atual do nosso input exbimos a frase quando o campo "nome" está invalido, ou seja vazio **&&** quando o campo já foi "tocado". 
 ```
 <html lang="pt-br" data-ng-app="flisolApp"> 
 <!-- exemplo02.html 02 -->
