@@ -121,7 +121,45 @@ Mais sobre as propriedades:
 
 >**$dirty**	verdadeiro se o form/input foi usado.
 
-No estado atual do nosso input exbimos a frase quando o campo "nome" está invalido, ou seja vazio **&&** quando o campo já foi "tocado". 
+No estado atual do nosso input exbimos a frase quando o campo "nome" está invalido, ou seja vazio **&&** quando o campo já foi "tocado".  
+Para estilizar ainda nosso input usaremos a diretiva ```ng-class``` [(documentação oficial)](https://docs.angularjs.org/api/ng/directive/ngClass) que nos permite adicionar classes dinamicamente em um elemento.   
+```
+<div class="form-group" data-ng-class="{ 'has-error' : formUsuario.nome.$invalid && !formUsuario.nome.$pristine }">
+  <label>Nome</label>
+  <input type="text" name="nome" class="form-control" data-ng-model="usuario.nome" required>
+  <p data-ng-if="formUsuario.nome.$invalid && !formUsuario.nome.$pristine" class="help-block">
+    Seu nome é obrigatório.
+  </p>
+</div>
+```
+_Sintaxe da diretiva ng-class -> { 'nome-da-classe' : expressãoBooleana }_
+
+Até que já temos um input, vamos fazer o mesmo processo, porem para um campo 'nome do usuário':
+```
+<form name="formUsuario" data-ng-submit="salvarUsuario()" novalidate> 
+  <div class="form-group" data-ng-class="{ 'has-error' : formUsuario.nome.$invalid && !formUsuario.nome.$pristine }">
+    <label>Nome</label>
+    <input type="text" name="nome" class="form-control" data-ng-model="usuario.nome" required>
+    <p data-ng-if="formUsuario.nome.$invalid && !formUsuario.nome.$pristine" class="help-block">
+      Seu nome é obrigatório.
+    </p>
+  </div>
+
+  <div class="form-group" data-ng-class="{ 'has-error' : formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine }">
+    <label>Nome de usuario</label>
+    <input type="text" name="usuario" class="form-control" data-ng-model="usuario.nomeUsuario" required>
+    <p data-ng-if="formUsuario.usuario.$invalid && !formUsuario.usuario.$pristine" class="help-block">
+      Nome de usuario é obrigatório.
+    </p>
+  </div>
+</form>
+```
+Feito isso precisaremos de um botão do tipo submit, esse botão não deve estar sempre abilitado, então usando a diretiva ```ng-disabled```.[(documentção oficial)](https://docs.angularjs.org/api/ng/directive/ngDisabled) iremos desabilitar o botão com base na propriedade $valid do formulário, ou seja, o botão só sera liberado quando o formulário estiver válido. A diretiva ```ng-disabled``` espera um valor boolean, e desabilita o elemento com base no valor recebido.
+```
+<input type="submit" class="btn btn-success" data-ng-disabled="formUsuario.$invalid" value="salvar">
+```
+
+**Versão final do código:** 
 ```
 <html lang="pt-br" data-ng-app="flisolApp"> 
 <!-- exemplo02.html 02 -->
