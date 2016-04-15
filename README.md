@@ -25,21 +25,21 @@ Ao iniciarmos nosso primeiro app, criaremos um ```index.hml``` como de costume e
 
 ```
 <html lang="pt-br">
+<!-- exemplo01.html 01 -->
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ui-router-example</title>
   </head>
   <body data-ng-app="flisolApp">
   </body>
-  
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   <script>
     angular
     .module('flisolApp', [])
     .controller('IndexController', IndexController);
-    ​
+
     function IndexController(){
-    	
+
     };
   </script>
 </html>
