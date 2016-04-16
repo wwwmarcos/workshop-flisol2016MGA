@@ -23,7 +23,7 @@ bower
 ### Exemplo 01 
 
 Ao iniciarmos nosso primeiro app, criaremos um ```index.hml``` como de costume e então usaremos o atributo ```ng-app``` para declararmos nosso primeiro e principal modulo da aplicação. O atributo ```ng-app``` pode ser utlizado em qualquer elemento da pagina, nesse exemplo usaremos na tag ```<html>```.  
-Como comentado na introdução o angular é baseado no padrão **MCV** (model, view, controller) porém com o seu **two way data binding** o angular ganhou a denominação de **MODEL VIEW WHATEVER (MVW ou MV*)**.  
+Como comentado na introdução o angular é baseado no padrão **MVC** (model, view, controller) porém com o seu **two way data binding** o angular ganhou a denominação de **MODEL VIEW WHATEVER (MVW ou MV*)**.  
 Two way data binding cria uma ligação direta bidirecional entre o **model** e **controller** (que?), resumindo as alterações feitas no model pela **view** são vistas pelo **controller** e vise versa, isso ficará mais claro no nosso primeiro exemplo.  
 ```
 <html lang="pt-br" data-ng-app="flisolApp"> <!-- declaração do modulo -->
@@ -56,7 +56,7 @@ Na função que representa o controller podemos ver o ```$scope``` sendo usado p
 
 ### Exemplo 02 
 
-Para treinarmos um pouco mais oque foi visto até agora, faremos validaremos um ```<form>``` com angular usando [boostrap](http://getbootstrap.com/) para deixar com um estilo melhor.  
+Para treinarmos um pouco mais oque foi visto até agora, faremos a validação de um ```<form>``` com angular, e usando o [boostrap](http://getbootstrap.com/) para a estilização dos exemplos.  
 Para iniciamos uma estrutura básica como usamos até agora, a única diferença é o import do boostrap.
 ```
 <html lang="pt-br" data-ng-app="flisolApp"> 
@@ -102,8 +102,8 @@ function IndexController($scope){
 };
 ```  
 Voltando ao ```form```  
-Agora criaremos um input comum usando o atributado ```required``` para indicarmos que aquele campo é requerido nesse formulário.  
-Abaixo do input, abriremos uma tag ```p``` com a diretiva ```ng-if``` [(documentação oficial)](https://docs.angularjs.org/api/ng/directive/ngIf), essa diretiva espera um valor **boolean** e recria/remove o elemento com base no valor recebido. Dentro dessa tag colocaremos as menssagens de validações. Nesse momento usaremos as propriedades de **form** que o angular nos fornece para construirmos nossa expressão. 
+Agora criaremos um input comum usando o atributo ```required``` para indicarmos que aquele campo é requerido nesse formulário.  
+Abaixo do input, abriremos uma tag ```p``` com a diretiva ```ng-if``` [(documentação oficial)](https://docs.angularjs.org/api/ng/directive/ngIf), essa diretiva espera um valor **boolean** e recria/remove o elemento com base no valor recebido. Dentro dessa tag colocaremos as mensagens de validação. Nesse momento usaremos as propriedades de **form** que o angular nos fornece para construirmos nossa expressão. 
 
 ```
 <label>Nome</label>
@@ -121,7 +121,7 @@ Mais sobre as propriedades:
 
 >**$dirty**	verdadeiro se o form/input foi usado.
 
-No estado atual do nosso input exbimos a frase quando o campo "nome" está invalido, ou seja vazio **&&** quando o campo já foi "tocado".  
+No estado atual do nosso input exibimos a frase quando o campo "nome" está invalido, ou seja vazio **&&** quando o campo já foi "tocado".  
 Para estilizar ainda nosso input usaremos a diretiva ```ng-class``` [(documentação oficial)](https://docs.angularjs.org/api/ng/directive/ngClass) que nos permite adicionar classes dinamicamente em um elemento.   
 ```
 <div class="form-group" data-ng-class="{ 'has-error' : formUsuario.nome.$invalid && !formUsuario.nome.$pristine }">
@@ -154,7 +154,7 @@ Até que já temos um input, vamos fazer o mesmo processo, porem para um campo '
   </div>
 </form>
 ```
-Feito isso precisaremos de um botão do tipo submit, esse botão não deve estar sempre abilitado, então usando a diretiva ```ng-disabled```.[(documentção oficial)](https://docs.angularjs.org/api/ng/directive/ngDisabled) iremos desabilitar o botão com base na propriedade $valid do formulário, ou seja, o botão só sera liberado quando o formulário estiver válido. A diretiva ```ng-disabled``` espera um valor boolean, e desabilita o elemento com base no valor recebido.
+Feito isso precisaremos de um botão do tipo submit, esse botão não deve estar sempre habilitado, então usando a diretiva ```ng-disabled```.[(documentção oficial)](https://docs.angularjs.org/api/ng/directive/ngDisabled) iremos desabilitar o botão, com base na propriedade $valid do formulário, ou seja, o botão só será liberado quando o formulário estiver válido. A diretiva ```ng-disabled``` espera um valor boolean, e desabilita o elemento com base no valor recebido.
 ```
 <input type="submit" class="btn btn-success" data-ng-disabled="formUsuario.$invalid" value="salvar">
 ```
